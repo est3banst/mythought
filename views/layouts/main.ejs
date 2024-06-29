@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <meta name="description" content="">
+    <title> <%= metadata.title %> </title>
+    <meta name="description" content="<%= metadata.description %>">
     <link rel="stylesheet" href="/css/style.css">
-    <script src="/js/main.js" defer></script>
+    <script type="text/javascript" src="/js/main.js" defer></script>
 </head>
 <body>
-    <header>
-        <%- include('../partials/header.ejs')  %>
-    </header>
-    <main class="container-blog">
-        <%- body  %>
-    </main>
-
-    <%- include('../partials/footer.ejs') %>
+    <div class="container-blog">
+        <header>
+            <%- include('../partials/header.ejs')  %>
+        </header>
+        <main class="container-blog">
+            <%- body  %>
+        </main>
+    
+        <%- include('../partials/footer.ejs') %>
+    </div>
 </body>
 </html>
