@@ -2,10 +2,13 @@ const express = require('express');
 const appRoutes = require('./routes/public')
 const admRouter = require('./routes/admin')
 require('dotenv').config();
+const connectDB = require('./config/db')
 
 const app = express();
 
 const PORT = 5005 || process.env.PORT;
+
+connectDB();
 
 app.use(express.static('public'))
 

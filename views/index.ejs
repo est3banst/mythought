@@ -1,12 +1,19 @@
 <section class="post-container">
     <article class="post-section">
-        <h2 class="post-title">De trabajar en un restaurant a desarrollar software</h2>
+        <h2 class="post-title">Blog sobre tecnología, lenguajes de programación y más</h2>
         <p class="post-content">El objetivo de este blog no es persuadir a nadie ni 
-            vender humo con cuentos mágicos, solo contar mi experiencia hasta 
-            la fecha, compartir opiniones respecto a tecnología y capaz inspirar a alguien en el proceso
+            vender humo, solo contar mi experiencia hasta la fecha, compartir opiniones respecto a 
+            tecnología y capaz inspirar a alguien en el proceso
         </p>
-        <figure class="post-author">
-            <img src="" alt="">
-        </figure>
+        <ul> 
+            <% blogData.forEach(data => { %>
+            <li> 
+                <h3 class="post-title"><%- data.title %></h3>
+                <p class="post-cont"><%- data.body %></p>
+                <span class="post-cont"> <%- data.createdAt.toDateString()%> </span>
+            </li>
+            <% }) %>
+        
+        </ul>
     </article>
 </section>

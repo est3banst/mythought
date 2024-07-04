@@ -1,4 +1,5 @@
 const express = require('express');
+const post = require('../models/Post');
 
 const app = express();
 
@@ -33,11 +34,12 @@ router.get('/post/:id', (req, res) => {
 })
 
 router.post('/add_post',(req, res) => {
-    const title = req.body.title;
-    const post = req.body.post;
-    const newPost = ({title : title,
-                      post : post,
-    })
+    const postTitle = req.body.title;
+    const bodyPost = req.body.post;
+    const newPost = post.create({
+        title : postTitle,
+        body: bodyPost
+    }) 
     res.redirect('/');
 
 })
