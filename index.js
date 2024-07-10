@@ -3,6 +3,9 @@ const appRoutes = require('./routes/public')
 const admRouter = require('./routes/admin')
 require('dotenv').config();
 const connectDB = require('./config/db')
+const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
+const mongoStore = require('connect-mongo')
 
 const app = express();
 
@@ -13,7 +16,10 @@ connectDB();
 app.use(express.static('public'))
 
 const expressLayout = require('express-ejs-layouts');
-
+const session = require('express-session');
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser)
+app.use(session)
 app.use(expressLayout);
 app.use(express.json());
 

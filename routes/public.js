@@ -8,36 +8,63 @@ router.get('/', async (req, res) => {
         title : 'My Dev Tour',
         description: 'Blog about technology and programming languages',
     }
+    
     try {
-        const blogData = await post.find()
-        res.render('index', { metadata, blogData })
+        let pageCon = 5
+        let page = req.query.page || 1;
+        const displayPages = (pageCon * page) - pageCon
+        const blogData = await post.aggregate([ {  $sort: { createdAt: + 1} }]).skip(displayPages).limit(pageCon).exec();
+
+        const numPosts = await post.countDocuments()
+        const nextpage = parseInt(page) + 1
+        const hasMorePage = nextpage <= Math.ceil(numPosts / pageCon);
+
+        res.render('index', { metadata, blogData, current: page, nextpage: hasMorePage ? nextpage : null })
     } catch (error) {
         console.log(error)
     }
 })
 
-function insertPosts() {
-    post.insertMany([{
-        title: "Aprende a programar de la manera díficil, no uses modelos de lenguaje",
-        body: "Con el rápido avance de la inteligencia artificial se han creado numerosas herramientas que pueden aumentar dramáticamente la productividad de los desarrolladores para completar tareas en tiempos acotados, pero, por otro lado estas herramientas pueden truncar el camino de personas que buscan iniciarse en la industria, eliminando el proceso de razonamiento inicial para construir algo, ya que con una simple 'prompt' obtienen el resultado final, ya producido, y aunque nunca es un resultado preciso, estas personas prefieren obtener rapidamente la respuesta a llegar mediante prueba y error a ese resultado deseado. Mi consejo: sumergirse en el problema, intentar abordarlo sin ayuda, si te lleva tiempo es normal, es parte de el proceso, cuanto más repitas esto tu mente más rapido solucionará problemas, sentate y escribí tu propio código, se aprende con las manos, NO con los ojos."
-    },
-    {
-        title: "Escapando el infierno de los tutoriales de programación",
-        body: "Cuando recién empezaba recuerdo que saltaba de tutorial en tutorial, y cuando terminaba el video, las pocas veces que lo hacía, quedaba en blanco, no podía hacer nada por mi cuenta. El tema, más importante que mirar un video y copiar lo que hace otra persona es analizar que hace esa persona, entender por que hace lo que hace y la manera en que lo hace, para luego pensar como podrías hacerlo de otra manera, o que podrías aportarle a este proyecto, para mejorarlo o expandirlo. Happy coding☺️."
-    },
-    {
-        title: "Por que es importante tomar descansos",
-        body: "La carrera de desarrollo de software puede sobrepasarte facilmente, con el paso de la tecnología y las herramientas nuevas que se construyen todos los dias, es imposible mantener el ritmo, ni siquiera lo intentes. La clave es encontrar un lenguaje con el que te sientas cómodo y empezar a construir proyectos, el resto va a llegar solo.."
+router.post('/search', async (req, res) => {
+    const searchObj = req.body.search;
+        const metadata = {
+            title : 'My Dev Tour',
+            description: 'Blog about technology and programming languages',
+        }        
+        try {
+        const searchRes = searchObj.replace(/[^a-zA-Z0-9]/g,"")
+        const blogData = await post.find({
+            $or : [
+                {title: { $regex: new RegExp(searchRes, 'i') }},
+                {body: {$regex: new RegExp(searchRes, 'i')}}
+            ]
+        });
+        res.render("search", {
+            blogData,
+            metadata,
+        })
     }
-])
-}
+    catch (error) {
+        console.log(error)
+    }
+    
+})
+router.get('/post/:id', async (req, res) => {
+    let identifier = req.params.id
+    try {
+        const postData = await post.findById({_id : identifier}) 
+        const metadata = {
+            title: postData.title,
+            description : 'Blog about technology and programming languages'
+        } 
+        res.render('post', {
+            metadata, postData
+        })
 
-// insertPosts();
-
-
-router.post('/search?', (req, res) => {
-    const searchObj = req.query.search;
-
+    }
+    catch(error) {
+        console.log(error)
+    }
 })
 
 router.get('/posts', (req,res) => {

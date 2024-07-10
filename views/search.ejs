@@ -1,0 +1,19 @@
+<div class="welcome-container">
+    <h2 class="post-title">Resultados</h2>
+    <article class="post-section">
+        <ul>
+            <% if (blogData.length === 0) { %>
+                <h2>No se encontraron resultados</h2>
+            <% } %>
+            <% blogData.forEach(element => { %>
+                <a href="/post/<%- element._id %>">
+                    <li>
+                        <h2><%- element.title %></h2>
+                        <span><%- element.createdAt %></span>
+                    </li>
+                </a>
+            <% }) %>
+           
+        </ul>
+    </article>
+</div>
