@@ -1,8 +1,23 @@
-<form class="form-post">
-    <label for="titulo"></label>
+<form class="post-form-actions" action="/add_post" method="POST">
+    
+    <label for="titulo">Título</label>
     <input name="titulo"
            id="titulo" 
            placeholder="Título de la publicación" 
            type="text" />
-    <button formaction="/add_post" type="submit">Publicar</button>
+   
+   <label for="description">Descripción</label>
+    <input type="text"
+        name="description"
+        id="description"
+        placeholder="Descripción">
+
+    <label for="cuerpo">Contenido</label>
+    <textarea
+    name="cuerpo"
+    id="cuerpo"
+    >
+
+    </textarea>
+    <button type="submit">Publicar</button>
         </form>

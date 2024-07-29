@@ -5,7 +5,9 @@
     --light-font: #f2f2f2;
     --all-shadows: #c2c2c2;
 }
-
+* {
+    scroll-behavior: smooth;
+}
 body {
     background-color: var(--background-color);
     font-family: 'Montserrat', serif;
@@ -36,9 +38,13 @@ h1, h2 {
 .nav-for-header {
     display: flex;
     align-items: center;
+    color: #a9c8ff;
+    color: #c7e6ff;
+    color: #2d4664;
     justify-content: space-around;
     border-bottom: 1px solid var(--font-colors);
 }
+
 .ul-container {
     display: flex;
     gap: .5rem;
@@ -87,6 +93,27 @@ h1, h2 {
     width: 100%;
     background-image: url('/imgs/coolbg.jpeg');
 }
+.icon-action {
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    border-radius: 12px;
+    margin: 1rem;
+    border: 1px solid #fff;
+}
+.post-actions {
+    display: flex;
+    border-bottom: 2px solid #fff;
+    justify-content: center;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+.post-date {
+    color: #fff;
+    font-size: 1.098rem;
+}
 .post-section {
     margin: auto;
     width: 80%;
@@ -100,12 +127,80 @@ h1, h2 {
 .post-content {
     color: var(--light-font);
 }
+.addpost {
+    display: flex;
+    width: 100%;
+}
+.addpost a {
+    border: 1px solid #fff;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 12px;
+}
+.addpost a:hover {
+    color: #e1dada;
+    background-color: #414141;
+}
+.button-del {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px;
+}
+.button-del:hover {
+    color: #f43131;
+}
+.button-del svg {
+    color: #f43131;
+}
+.addpost svg {
+    color: #fff;
+    padding: 6px;
+}
+.delete-act {
+    color: #fff;
+}
+.post-form-actions {
+    width: 100%;
+    padding: 1rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    flex-direction: column;
+
+}
+.post-form-actions label {
+    color: #fff;
+    text-align: left;
+    width: 60%;
+}
+.post-form-actions input {
+    width: 60%;
+    margin: 1rem 0;
+    padding: 8px 0;
+    line-height: 1;
+}
+.post-form-actions textarea {
+    width: 60%;
+    min-height: 220px;
+}
+.post-form-actions button {
+    padding: 6px;
+    margin: 1rem 0;
+}
 .footer-site {
     border-top: 1px solid #fff;
     width: 100%;
 }
 .footer-site small {
     color: var(--light-font);
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 .post-title {
     color: var(--light-font);
@@ -128,6 +223,14 @@ ul > a {
 ul {
     padding: 10px;
 }
+.footer-ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.footer-ul a {
+    padding: 0 1rem;
+}
 .pagination-anchor {
     border: 1px solid #fff;
     display: flex;
@@ -140,9 +243,17 @@ ul {
 .container-responsive {
     display: none;
 }
+.register-now { 
+    margin: 1rem 0;
+    display: flex;
+    justify-content: center;
+}
 .title-admin {
     color: var(--font-colors);
     text-align: center;
+    border-radius: 6px;
+    padding: 8px;
+    border: 1px solid #fff;
 }
 .par-login {
     color: var(--light-font);

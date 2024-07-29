@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
         let pageCon = 5
         let page = req.query.page || 1;
         const displayPages = (pageCon * page) - pageCon
-        const blogData = await post.aggregate([ {  $sort: { createdAt: + 1} }]).skip(displayPages).limit(pageCon).exec();
+        const blogData = await post.aggregate([ {  $sort: { createdAt: - 1} }]).skip(displayPages).limit(pageCon).exec();
 
         const numPosts = await post.countDocuments()
         const nextpage = parseInt(page) + 1
@@ -67,13 +67,6 @@ router.get('/post/:id', async (req, res) => {
     }
 })
 
-router.get('/posts', (req,res) => {
-    const metadata = {
-        title : 'My Dev Tour',
-        description: 'Blog about technology and programming languages',
-    }
-    res.render('posts', { metadata })
-})
 
 router.get('/about',(req,res) => {
     const metadata = {

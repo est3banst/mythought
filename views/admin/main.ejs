@@ -1,16 +1,11 @@
 <h3 class="title-admin">Iniciar Sesión en DevTour</h3>
-<form class="form-admin" action="/admin" method="post">
+<form class="form-admin" action="/admin" method="POST">
     <label for="usuario">Usuario</label>
     <input type="text" name="usuario">
     <label for="contra">Contraseña</label>
     <input type="password" name="contra">
     <button type="submit">Iniciar</button>
 </form>
-<h3 class="title-admin">No tenes cuenta? Registrate en un minuto!</h3>
-<form class="form-admin" action="/register" method="post">
-    <label class="label-register" for="usuario">Usuario</label>
-    <input type="text" name="usuario">
-    <label class="label-register" for="contra">Contraseña</label>
-    <input type="password" name="contra">
-    <button type="submit">Registrarse</button>
-</form>
+<span class="register-now">
+    <a href="/register" class="title-admin">No tenes cuenta? Registrate en un minuto!</a>
+</span>
