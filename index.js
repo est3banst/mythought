@@ -30,7 +30,7 @@ app.use(session({
         store: MongoStore.create({
             mongoUrl: process.env.MONGODB_CONN
         }),
-    }
+    cookie: { maxAge: 86400 }}
 ));
 
 

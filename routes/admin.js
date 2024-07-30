@@ -8,7 +8,6 @@ const Secretly = process.env.JWT_SECRET
 
 const router = express.Router();
 
-const posts = {};
 const adminPanel = "../views/layouts/admin"
 const loginPanel = "../views/layouts/login"
 
@@ -28,15 +27,6 @@ const authUser = (req, res, next) => {
         res.status(401).json({message: "No autorizado"})
     }
 
-    // const user = req.body.user;
-    // const password = req.body.password
-    // if (!user) {
-    //     return "Invalid credentials"
-    // }
-    // if (!password) {
-    //     return "Password incorrect"
-    // }
-    // next()
 }
 
 router.get('/admin', async (req, res) => {
@@ -117,7 +107,7 @@ router.post('/admin', async (req, res) => {
     }
 })
 
-//
+// Panel de usuario
 router.get('/mainboard',authUser, async (req, res) => {
     const metadata = {
         title : 'My Dev Tour',
@@ -216,10 +206,6 @@ router.put('/edit_post/:id' ,authUser ,async (req, res) => {
 });
 
 router.delete('/delete_post/:id', authUser, async (req, res ) => {
-    const metadata = {
-        title : 'My Dev Tour',
-        description: 'Blog about technology and programming languages',
-    }
     try {
         await Post.deleteOne({ _id : req.params.id})
         res.redirect('/mainboard')
