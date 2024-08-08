@@ -53,10 +53,11 @@ router.get('/register', (req, res) => {
     try {
         if (req.cookies.token) {
             res.redirect('/mainboard')
-        }
+        } else {
         res.render('admin/register', {
             metadata, layout: loginPanel
         })
+    }
     } catch (error) {
         console.log(error)
     }
@@ -65,12 +66,14 @@ router.get('/register', (req, res) => {
 // Registro de usuario
  
 router.post('/register', async (req, res) => {
+    const name = req.body.name;
+    const lname = req.body.lname;
     const user = req.body.usuario;
     const pass = req.body.contra;
     try {
     const passwordHash = await bcrypt.hash(pass, 5)
     try {
-        const newUser = await Userbd.create({ username: user, password: passwordHash});
+        const newUser = await Userbd.create({ name: name, lname: lname,username: user, password: passwordHash});
         res.redirect('/admin');
         
     } 
