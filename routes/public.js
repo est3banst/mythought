@@ -1,5 +1,7 @@
 const express = require('express');
 const post = require('../models/Post')
+const formKey = process.env.FORM
+
 
 const router = express.Router();
 
@@ -81,6 +83,7 @@ router.get('/contact', (req, res) => {
         title : 'My Dev Tour',
         description: 'Blog about technology and programming languages',
     }
-    res.render('contact', { metadata })
+    
+    res.render('contact', { metadata, formKey })
 })
 module.exports.routes = router;

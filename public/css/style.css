@@ -291,6 +291,47 @@ ul {
 
     color: var(--light-font);
 }
+.contact-form {
+    max-width: 600px;
+    margin: auto;
+}
+.contact-form p {
+    color: #fff;
+    text-align: center;
+    font-size: 1.19rem;
+}
+.contact-form button {
+    padding: 11px;
+    background-color: transparent;
+    color: #fff;
+    font-size: 1.28rem;
+}
+.contact-form button:hover {
+    background-color: #e1dada;
+    color: #020202;
+}
+.content-container {
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+.content-container h2 {
+    font-size: 1.78rem;
+}
+.contactar {
+    padding: 8px;
+    font-size: 1.46rem;
+    font-weight: 900;
+    letter-spacing: 0.02em;
+    border-radius: 12px;
+    border: 1px solid #fff;
+    
+}
+
 @media (width <= 1044px) {
     .nav-for-header ul {
         display: none;

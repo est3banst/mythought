@@ -156,7 +156,7 @@ router.post('/add_post', authUser, async(req, res) => {
         try {
             const newPost = new Post({
                 title: req.body.titulo,
-                description: req.body.description,    
+                description: req.body.description,  
                 body: req.body.cuerpo,
             })
         await Post.create(newPost);
